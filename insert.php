@@ -11,12 +11,12 @@ if (isset($_POST['submit'])) {
     //do something
 
     //..do all post stuff
-   // header('Location: insert.php'); //clears POST
+    // header('Location: insert.php'); //clears POST
 }
 
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['name']) && isset($_POST['age']) && isset($_POST['subject'])    ) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['name']) && isset($_POST['age']) && isset($_POST['subject'])) {
 
     $namerec = $_POST['name'];
     $agerec = $_POST['age'];
@@ -68,10 +68,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['name']) && isset($_POS
             $.ajax({
                 type: 'POST',
                 url: url,
+                encode: true,
                 data: form.serialize(),
-                success: function(response) {
-                    form.reset();
-                    alert(response);
+                success: function() {                   
+                    document.getElementById("studentAddForm").reset();
                 }
             });
         });
