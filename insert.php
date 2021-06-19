@@ -7,18 +7,25 @@ $connection = new Connection();
 $submitData = new Submit();
 
 
+if (isset($_POST['submit'])) {
+    //do something
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //..do all post stuff
+   // header('Location: insert.php'); //clears POST
+}
+
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['name']) && isset($_POST['age']) && isset($_POST['subject'])    ) {
 
     $namerec = $_POST['name'];
     $agerec = $_POST['age'];
     $subjectrec = $_POST['subject'];
 
 
-    if(isset($namerec) && isset($agerec) && isset($subjectrec) ){
-        $submitData-> saveStudent($namerec,$agerec,$subjectrec);
+    if ($namerec && $agerec && $subjectrec) {
+        $submitData->saveStudent($namerec, $agerec, $subjectrec);
     }
-
 }
 
 
@@ -32,64 +39,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="form-group">
                 <label>Name</label>
                 <input type="text" class="form-control" name="name">
-
             </div>
-
 
             <div class="form-group">
                 <label>Age</label>
                 <input type="text" class="form-control" name="age">
             </div>
 
-
             <div class="form-group">
                 <label>Subject</label>
                 <input type="text" class="form-control" name="subject">
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" name="submit" id="submitBtn" class="btn btn-primary">Submit</button>
 
         </form>
     </div>
 </section>
 
 <script>
-    // this is the id of the form
-    // $("#studentAddForm").submit(function(e) {
-
-    //     e.preventDefault();
-
-    //     var form = $(this);
-    //     var url = form.attr('action');
-
-    //     $.ajax({
-    //         type: "POST",
-    //         url: url,
-    //         data: form.serialize(), 
-    //         success: function(data) {
-    //             alert(data); 
-    //         }
-    //     });
-
-
-    // });
-
     $(function() {
-        $("#studentAddForm").submit(function(event) {
+        $("#submitBtn").click(function(event) {
             event.preventDefault();
 
-            // var form = $(this);
+            var form = $("#studentAddForm");
             var url = form.attr('action');
 
             $.ajax({
                 type: 'POST',
                 url: url,
-                data: $(this).serialize(),
-                success: function(result) {
-                    $("#response").text(result);
-
+                data: form.serialize(),
+                success: function(response) {
+                    form.reset();
+                    alert(response);
                 }
-
             });
         });
     });
