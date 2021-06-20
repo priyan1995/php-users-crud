@@ -23,6 +23,12 @@ class Viewstudentdata
                 <td><?php echo $row["name"];  ?></td>
                 <td><?php echo $row["age"];  ?></td>
                 <td><?php echo $row["subject"];  ?></td>
+                <td>
+                    <a href="" class="btn btn-primary">Edit</a>
+                    <a href="" class="btn btn-success">View</a>
+                    <a href="" class="btn btn-danger">Delete</a>
+                </td>
+
             </tr>
 <?php
         }
