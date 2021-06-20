@@ -1,17 +1,13 @@
 <?php
-require_once __DIR__ . "/header.php";
-require_once __DIR__ . "/connection.php";
-require_once __DIR__ . "/submit.php";
+require_once __DIR__ . "../../header.php";
+require_once __DIR__ . "../../classes/connection.php";
+require_once __DIR__ . "../../classes/students/submit.php";
 
 $connection = new Connection();
 $submitData = new Submit();
 
 
 if (isset($_POST['submit'])) {
-    //do something
-
-    //..do all post stuff
-    // header('Location: insert.php'); //clears POST
 }
 
 
@@ -70,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['name']) && isset($_POS
                 url: url,
                 encode: true,
                 data: form.serialize(),
-                success: function() {                   
+                success: function() {
                     document.getElementById("studentAddForm").reset();
                 }
             });
@@ -80,4 +76,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['name']) && isset($_POS
 
 
 
-<?php require_once __DIR__ . '/footer.php'; ?>
+<?php require_once __DIR__ . '../../footer.php'; ?>
