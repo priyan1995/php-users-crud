@@ -30,26 +30,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['name']) && isset($_POS
 
 <section class="insert-form-sec">
     <div class="container">
-        <form id="studentAddForm" action="" method="post">
 
-            <div class="form-group">
-                <label>Name</label>
-                <input type="text" class="form-control" name="name">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2>Add Student</h2>
             </div>
 
-            <div class="form-group">
-                <label>Age</label>
-                <input type="text" class="form-control" name="age">
+            <div class="col-12">
+
+                <form id="studentAddForm" action="" method="post">
+
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" name="name">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="text" class="form-control" name="age">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <input type="text" class="form-control" name="subject">
+                    </div>
+
+                    <br>
+                    <button type="button" name="submit" id="submitBtn" class="btn btn-primary">Save</button>
+                    <a href="./view.php" class="btn btn-success">All Students</a>
+
+                </form>
             </div>
-
-            <div class="form-group">
-                <label>Subject</label>
-                <input type="text" class="form-control" name="subject">
-            </div>
-
-            <button type="button" name="submit" id="submitBtn" class="btn btn-primary">Submit</button>
-
-        </form>
+        </div>
     </div>
 </section>
 

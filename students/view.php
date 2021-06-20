@@ -11,19 +11,33 @@ $students = new Viewstudentdata();
 
 <section class="student-table-sec">
     <div class="container">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Subject</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $students->viewalldata('students'); ?>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>All Students</h2>
+            </div>
 
-            </tbody>
-        </table>
+            <div class="col-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Action</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $students->viewalldata('students'); ?>
+                    </tbody>
+                </table>
+                <br>
+                <a href="insert.php" class="btn btn-success">Add new</a>
+            </div>
+        </div>
     </div>
 </section>
+
+<?php require_once __DIR__ . '../../footer.php'; ?>
