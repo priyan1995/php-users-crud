@@ -9,24 +9,18 @@ class DeleteStudent{
         $dbConnect = new Connection();
         $conn = $dbConnect->connect();
         $sql = "DELETE FROM students WHERE id=$deleteId";
-        $result = $conn->query($sql);
+        $result = $conn->query($sql);      
 
         // if($result){
-        //     echo 'deleted';
+        //     return  'deleted';
         // }else{
-        //     echo 'failed';
+        //     return 'failed';
         // }
        
-    }
-
-   
+    } 
 
 }
 
-
-// $deletestud = new DeleteStudent();
-
-// $deletestud->deletestudentdata(46);
 
 
 

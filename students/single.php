@@ -3,19 +3,24 @@
 require_once __DIR__ . "../../header.php";
 require_once __DIR__ . "../../classes/connection.php";
 require_once __DIR__ . "../../classes/students/single.php";
+require_once __DIR__ . "../../classes/students/delete.php";
+
 
 $id = $_GET['id'];
 $table = 'students';
 
 
 $student = new ViewStudentSingle();
+$deleteStud = new DeleteStudent();
 
 $student_name = $student->getstudentname($id, $table);
 $student_age = $student->getstudentAge($id, $table);
 $student_subject = $student->getstudentSubject($id, $table);
 
-
-
+if (isset($_POST['delete_id'])) {
+    $delId = $_POST['delete_id'];
+    $deleted = $deleteStud->deletestudentdata($delId);  
+}
 ?>
 
 
@@ -33,7 +38,7 @@ $student_subject = $student->getstudentSubject($id, $table);
             <div class="col-12 text-center">
                 <a href="view.php" class="btn btn-primary">All Students</a>
                 <a href="edit.php" class="btn btn-success">Edit Students</a>
-                <a class="btn btn-danger">Delete Students</a>
+                <a href="" class="btn btn-danger delete-student" id="<?php echo $id; ?>" >Delete Students</a>
 
 
             </div>
@@ -41,5 +46,30 @@ $student_subject = $student->getstudentSubject($id, $table);
         </div>
     </div>
 </section>
+
+
+
+<script>
+
+    $(function() {
+        $(".delete-student").click(function(event) {
+            event.preventDefault();
+
+            var delID = $(this).attr('id');            
+
+            $.ajax({
+                type: 'POST',
+                url: '',
+                encode: true,
+                data: {
+                    delete_id: delID
+                },
+                success: function(data) {
+                    window.location.href = 'view.php';
+                }
+            });
+        });
+    });
+</script>
 
 <?php require_once __DIR__ . '../../footer.php'; ?>
