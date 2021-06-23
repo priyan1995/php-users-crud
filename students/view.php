@@ -68,7 +68,6 @@ if (isset($_POST['deleteID'])) {
                 confirmButtonText: `Delete`,
                 denyButtonText: `Don't Delete`,
             }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
                     $.ajax({
                         type: 'POST',
@@ -79,25 +78,13 @@ if (isset($_POST['deleteID'])) {
                         },
                         success: function(data) {
                             Swal.fire('Deleted!', '', 'success');
-                            window.location.href= 'view.php';
-
+                            window.location.href = 'view.php';
                         }
                     });
-
-
-
-
-
                 } else if (result.isDenied) {
-                    Swal.fire('Changes are not deleted', '', 'info')
+                    Swal.fire('Student is not deleted', '', 'info')
                 }
-            })
-
-
-
-
-
-
+            });
 
         });
     });

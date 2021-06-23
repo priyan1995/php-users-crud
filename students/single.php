@@ -57,15 +57,28 @@ if (isset($_POST['delete_id'])) {
 
             var delID = $(this).attr('id');            
 
-            $.ajax({
-                type: 'POST',
-                url: '',
-                encode: true,
-                data: {
-                    delete_id: delID
-                },
-                success: function(data) {
-                    window.location.href = 'view.php';
+            Swal.fire({
+                title: 'Do you want to delete the student?',
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: `Delete`,
+                denyButtonText: `Don't Delete`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '',
+                        encode: true,
+                        data: {
+                            delete_id: delID
+                        },
+                        success: function(data) {
+                            Swal.fire('Deleted!', '', 'success');
+                            window.location.href = 'view.php';
+                        }
+                    });
+                } else if (result.isDenied) {
+                    Swal.fire('Student is not deleted', '', 'info')
                 }
             });
         });
