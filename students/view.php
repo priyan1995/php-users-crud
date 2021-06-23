@@ -3,8 +3,21 @@
 require_once __DIR__ . "../../header.php";
 require_once __DIR__ . "../../classes/connection.php";
 require_once __DIR__ . "../../classes/students/view.php";
+require_once __DIR__ . "../../classes/students/delete.php";
 
+
+
+
+
+$deleteStud = new DeleteStudent();
 $students = new Viewstudentdata();
+
+if(isset($_POST['deleteID'])){
+    $deleteStudentId = $_POST['deleteID'];
+    $deleteStud-> deletestudentdata($deleteStudentId);
+}
+
+
 
 ?>
 
@@ -39,5 +52,34 @@ $students = new Viewstudentdata();
         </div>
     </div>
 </section>
+
+
+<script>
+
+$(function(){
+    $(".delete-stud").click(function(event){
+        event.preventDefault();
+
+        var delId = $(this).attr('id');
+
+        $.ajax({
+            type:'POST',
+            url: '',
+            encode: true,
+            data: {
+                deleteID : delId
+            },
+            success: function(data){
+               window.location.href= 'view.php';
+               
+            }
+        });
+
+
+    });
+});
+
+
+</script>
 
 <?php require_once __DIR__ . '../../footer.php'; ?>
