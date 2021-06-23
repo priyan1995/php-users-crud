@@ -12,9 +12,9 @@ require_once __DIR__ . "../../classes/students/delete.php";
 $deleteStud = new DeleteStudent();
 $students = new Viewstudentdata();
 
-if(isset($_POST['deleteID'])){
+if (isset($_POST['deleteID'])) {
     $deleteStudentId = $_POST['deleteID'];
-    $deleteStud-> deletestudentdata($deleteStudentId);
+    $deleteStud->deletestudentdata($deleteStudentId);
 }
 
 
@@ -55,31 +55,52 @@ if(isset($_POST['deleteID'])){
 
 
 <script>
+    $(function() {
+        $(".delete-stud").click(function(event) {
+            event.preventDefault();
 
-$(function(){
-    $(".delete-stud").click(function(event){
-        event.preventDefault();
+            var delId = $(this).attr('id');
 
-        var delId = $(this).attr('id');
+            Swal.fire({
+                title: 'Do you want to delete the student?',
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: `Delete`,
+                denyButtonText: `Don't Delete`,
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '',
+                        encode: true,
+                        data: {
+                            deleteID: delId
+                        },
+                        success: function(data) {
+                            Swal.fire('Deleted!', '', 'success');
+                            window.location.href= 'view.php';
 
-        $.ajax({
-            type:'POST',
-            url: '',
-            encode: true,
-            data: {
-                deleteID : delId
-            },
-            success: function(data){
-               window.location.href= 'view.php';
-               
-            }
+                        }
+                    });
+
+
+
+
+
+                } else if (result.isDenied) {
+                    Swal.fire('Changes are not deleted', '', 'info')
+                }
+            })
+
+
+
+
+
+
+
         });
-
-
     });
-});
-
-
 </script>
 
 <?php require_once __DIR__ . '../../footer.php'; ?>
