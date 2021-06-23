@@ -24,7 +24,7 @@ class Viewstudentdata
                 <td><?php echo $row["age"];  ?></td>
                 <td><?php echo $row["subject"];  ?></td>
                 <td>
-                    <a href="" class="btn btn-primary">Edit</a>
+                    <a href="edit.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">Edit</a>
                     <a href="single.php?id=<?php echo $row['id']; ?>" class="btn btn-success">View</a>
                     <a href="" class="btn btn-danger delete-stud" id="<?php echo $row["id"];  ?>">Delete</a>
                 </td>

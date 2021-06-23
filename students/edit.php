@@ -1,30 +1,20 @@
 <?php
 require_once __DIR__ . "../../header.php";
-require_once __DIR__ . "../../classes/connection.php";
-require_once __DIR__ . "../../classes/students/submit.php";
+require_once __DIR__ . "../../classes/students/edit.php";
 
-$connection = new Connection();
-$submitData = new Submit();
+$id = $_GET['id'];
 
+if ($_SERVER["REQUEST_METHOD"] == "POST" &&  isset($_POST['name']) && isset($_POST['age']) && isset($_POST['subject'])) {
 
-if (isset($_POST['submit'])) {
-}
+    $name = $_POST['name'];
+    $age = $_POST['age'];
+    $subject = $_POST['subject'];
 
-
-
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['name']) && isset($_POST['age']) && isset($_POST['subject'])) {
-
-    $namerec = $_POST['name'];
-    $agerec = $_POST['age'];
-    $subjectrec = $_POST['subject'];
-
-
-    if ($namerec != '' && $agerec != '' && $subjectrec != '') {
-        $submitData->saveStudent($namerec, $agerec, $subjectrec);
+    if ($name != '' && $age != '' &&  $subject != '') {
+        $editStud = new EditStudent();
+        $editStud->editStudentSave($id, $name, $age, $subject);
     }
 }
-
-
 ?>
 
 
@@ -33,13 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['name']) && isset($_POS
 
         <div class="row">
             <div class="col-12 text-center">
-                <h2>Add Student</h2>
+                <h2>Edit Student</h2>
             </div>
 
             <div class="col-12">
-
-                <form id="studentAddForm" action="" method="post">
-
+                <form id="studentEditForm" action="" method="post">
                     <div class="form-group">
                         <label>Name</label>
                         <input type="text" class="form-control" name="name">
@@ -67,10 +55,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['name']) && isset($_POS
 
 <script>
     $(function() {
-        $("#submitBtn").click(function(event) {
-            event.preventDefault();
+        $("#submitBtn").click(function(e) {
+            e.preventDefault();
 
-            var form = $("#studentAddForm");
+            var form = $("#studentEditForm");
             var url = form.attr('action');
 
             $.ajax({
@@ -78,15 +66,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['name']) && isset($_POS
                 url: url,
                 encode: true,
                 data: form.serialize(),
-                success: function() {
-                    Swal.fire('Student Saved');
-                    document.getElementById("studentAddForm").reset();
+                success: function(data) {
+                    Swal.fire('Student Saved');                   
                 }
             });
+
         });
     });
 </script>
-
-
 
 <?php require_once __DIR__ . '../../footer.php'; ?>
