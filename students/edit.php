@@ -1,8 +1,19 @@
 <?php
 require_once __DIR__ . "../../header.php";
 require_once __DIR__ . "../../classes/students/edit.php";
+require_once __DIR__ . "../../classes/students/single.php";
+
 
 $id = $_GET['id'];
+
+$studentData = new ViewStudentSingle();
+
+$studentName = $studentData->getstudentname($id,'students');
+$studentAge = $studentData->getstudentAge($id,'students');
+$studentSubject = $studentData->getstudentSubject($id,'students');
+
+
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" &&  isset($_POST['name']) && isset($_POST['age']) && isset($_POST['subject'])) {
 
@@ -30,17 +41,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" &&  isset($_POST['name']) && isset($_PO
                 <form id="studentEditForm" action="" method="post">
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control" name="name">
+                        <input type="text" class="form-control" name="name" value="<?php echo $studentName; ?>">
                     </div>
 
                     <div class="form-group">
                         <label>Age</label>
-                        <input type="text" class="form-control" name="age">
+                        <input type="text" class="form-control" name="age" value="<?php echo $studentAge; ?>">
                     </div>
 
                     <div class="form-group">
                         <label>Subject</label>
-                        <input type="text" class="form-control" name="subject">
+                        <input type="text" class="form-control" name="subject" value="<?php echo $studentSubject; ?>">
                     </div>
 
                     <br>
@@ -67,7 +78,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" &&  isset($_POST['name']) && isset($_PO
                 encode: true,
                 data: form.serialize(),
                 success: function(data) {
-                    Swal.fire('Student Saved');                   
+                    Swal.fire('Student Saved');   
+                    window.location.href = 'view.php';                
                 }
             });
 
