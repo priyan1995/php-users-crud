@@ -13,8 +13,33 @@
 
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  
+  <?php include_once __DIR__. '/functions.php'; ?>
+
   <title>Students</title>
 </head>
 
 <body>
+
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="<?php echo homeurl(); ?>">Dashboard</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="<?php echo homeurl(); ?>">Home </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo homeurl(); ?>/students">Students</a>
+          </li>
+
+        </ul>
+
+
+      </div>
+    </div>
+  </nav>
