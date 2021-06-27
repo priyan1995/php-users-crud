@@ -37,7 +37,7 @@ if (isset($_POST['delete_id'])) {
 
             <div class="col-12 text-center">
                 <a href="view.php" class="btn btn-primary">All Students</a>
-                <a href="edit.php" class="btn btn-success">Edit Students</a>
+                <a href="edit.php?id=<?php echo $id; ?>" class="btn btn-success">Edit Students</a>
                 <a href="" class="btn btn-danger delete-student" id="<?php echo $id; ?>" >Delete Students</a>
 
 
