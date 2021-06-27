@@ -2,28 +2,29 @@
 <?php
 require_once __DIR__ . "../header.php";
 require_once __DIR__ . "../classes/connection.php";
+require_once __DIR__ . "../classes/login.php";
+
 
 
 $connection = new Connection();
 
-
+session_start();
 
 // if (isset($_POST['submit'])) {
 // }
 
 
 
-// if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['name']) && isset($_POST['age']) && isset($_POST['subject'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['uname']) && isset($_POST['password'])) {
 
-//     $namerec = $_POST['name'];
-//     $agerec = $_POST['age'];
-//     $subjectrec = $_POST['subject'];
+    $username = $_POST['uname'];
+    $password = $_POST['password'];
 
 
-//     if ($namerec != '' && $agerec != '' && $subjectrec != '') {
-//         $submitData->saveStudent($namerec, $agerec, $subjectrec);
-//     }
-// }
+    // if ($namerec != '' && $agerec != '' && $subjectrec != '') {
+    //     $submitData->saveStudent($namerec, $agerec, $subjectrec);
+    // }
+}
 
 
 ?>
