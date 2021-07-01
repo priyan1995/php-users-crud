@@ -18,12 +18,9 @@ class Login
 
         $count = mysqli_num_rows($result);
 
-
-
         if ($count == 1) {
 
-            $_SESSION['login_user'] = $session_name;
-            
+            $_SESSION['login_user'] = $session_name;            
             header("location: index.php");
             return $_SESSION['login_user'];
         } else {
