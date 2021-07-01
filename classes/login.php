@@ -19,7 +19,8 @@ class Login{
 
         if($count == 1){            
             $_SESSION['login_user'] = $session_name;        
-           header("location: index.php");
+          // header("location: index.php");          
+         // echo  $session_name;
         }else{
             echo "Username or Password Invalid..!";
         }
@@ -28,4 +29,5 @@ class Login{
 }
 
 
-
+//  $login = new Login();
+//  $login->loginAccess("test","test");
