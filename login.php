@@ -1,29 +1,21 @@
-
 <?php
 require_once __DIR__ . "../header.php";
 require_once __DIR__ . "../classes/connection.php";
 require_once __DIR__ . "../classes/login.php";
+require_once __DIR__ . "../classes/session.php";
+
+$login = new Login();
+$login->loginAccess("test", "test");
 
 
 
 $connection = new Connection();
-
-session_start();
-
-// if (isset($_POST['submit'])) {
-// }
-
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['uname']) && isset($_POST['password'])) {
 
     $username = $_POST['uname'];
     $password = $_POST['password'];
-
-
-    // if ($namerec != '' && $agerec != '' && $subjectrec != '') {
-    //     $submitData->saveStudent($namerec, $agerec, $subjectrec);
-    // }
 }
 
 
@@ -53,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['uname']) && isset($_PO
                     </div>
 
 
-                   
+
                     <br>
                     <button type="button" name="submit" id="submitBtn" class="btn btn-primary">Login</button>
                     <a href="register.php" class="btn btn-success">Register</a>
@@ -89,4 +81,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['uname']) && isset($_PO
 
 
 <?php require_once __DIR__ . '../footer.php'; ?>
-

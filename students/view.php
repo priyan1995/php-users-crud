@@ -5,7 +5,9 @@ require_once __DIR__ . "../../classes/connection.php";
 require_once __DIR__ . "../../classes/students/view.php";
 require_once __DIR__ . "../../classes/students/delete.php";
 
-
+require_once __DIR__ . "../../classes/session.php";
+$sessionCheck = new SessionCheck();
+$sessionCheck-> sessionIsst();
 
 
 

@@ -5,6 +5,9 @@ require_once __DIR__ . "../../classes/connection.php";
 require_once __DIR__ . "../../classes/students/single.php";
 require_once __DIR__ . "../../classes/students/delete.php";
 
+require_once __DIR__ . "../../classes/session.php";
+$sessionCheck = new SessionCheck();
+$sessionCheck-> sessionIsst();
 
 $id = $_GET['id'];
 $table = 'students';

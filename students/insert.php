@@ -2,6 +2,10 @@
 require_once __DIR__ . "../../header.php";
 require_once __DIR__ . "../../classes/connection.php";
 require_once __DIR__ . "../../classes/students/submit.php";
+require_once __DIR__ . "../../classes/session.php";
+$sessionCheck = new SessionCheck();
+$sessionCheck-> sessionIsst();
+
 
 $connection = new Connection();
 $submitData = new Submit();

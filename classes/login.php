@@ -10,24 +10,24 @@ class Login{
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         $session_name = $row["username"];
-        if($result){
-            // echo "data fetched";
-        }else{
-            echo "data fetch failed";
-        }
+       
         $count = mysqli_num_rows($result);
 
-        if($count == 1){            
-            $_SESSION['login_user'] = $session_name;        
-          // header("location: index.php");          
+        
+
+        if($count == 1){    
+                   
+        $_SESSION['login_user'] = $session_name;        
+           header("location: index.php");          
          // echo  $session_name;
         }else{
             echo "Username or Password Invalid..!";
         }
 
+        return $_SESSION['login_user'];
+
     }
 }
 
 
-//  $login = new Login();
-//  $login->loginAccess("test","test");
+
