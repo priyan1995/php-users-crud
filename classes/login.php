@@ -24,7 +24,7 @@ class Login
             header("location: index.php");
             return $_SESSION['login_user'];
         } else {
-            echo "Username or Password Invalid..!";
+            return "Username or Password Invalid..!";
         }
     }
 }

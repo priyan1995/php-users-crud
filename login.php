@@ -4,13 +4,8 @@ require_once __DIR__ . "../classes/connection.php";
 require_once __DIR__ . "../classes/login.php";
 require_once __DIR__ . "../classes/session.php";
 
-// $login = new Login();
-// $login->loginAccess("test", "test");
-
-
 
 $connection = new Connection();
-
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['uname']) && isset($_POST['password'])) {
 
@@ -20,11 +15,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['uname']) && isset($_PO
     $login = new Login();
     $login->loginAccess($username, $password);
 
-    if(isset($_SESSION['login_user'])){
+    if (isset($_SESSION['login_user'])) {
         header("location: index.php");
     }
 }
-
 
 ?>
 
@@ -38,7 +32,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['uname']) && isset($_PO
             </div>
 
             <div class="col-12">
-
                 <form id="loginForm" action="" method="post">
 
                     <div class="form-group">
@@ -51,10 +44,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['uname']) && isset($_PO
                         <input type="password" class="form-control" name="password">
                     </div>
 
-
+                    <div>
+                    <p class="text-danger mb-0">
+                        <?php
+                        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['uname']) && isset($_POST['password'])) {
+                            if (!isset($_SESSION['login_user'])) {
+                                echo "Invalid Login..!";
+                            }
+                        }
+                        ?>
+                    </p>
+                    </div>
 
                     <br>
-                    <button type="button" name="submit" id="submitBtn" class="btn btn-primary">Login</button>
+                    <button type="submit" name="submit" id="submitBtn" class="btn btn-primary">Login</button>
                     <a href="register.php" class="btn btn-success">Register</a>
 
                 </form>
@@ -66,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['uname']) && isset($_PO
 <script>
     $(function() {
         $("#submitBtn").click(function(event) {
-            event.preventDefault();
+            //  event.preventDefault();
 
             var form = $("#loginForm");
             var url = form.attr('action');
@@ -76,10 +79,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['uname']) && isset($_PO
                 url: url,
                 encode: true,
                 data: form.serialize(),
-                success: function() {
+                success: function(data) {
                     // Swal.fire('Student Saved');
-                     //document.getElementById("studentAddForm").reset();
-                     window.location.href = 'index.php';  
+                    //document.getElementById("studentAddForm").reset();
+                    //window.location.href = 'index.php';                  
                 }
             });
         });
