@@ -10,20 +10,10 @@
         $conn = $dbConnect->connect();
         $data = mysqli_query($conn, "insert into students values('','".$name."','".$age."','".$subject."')");
         return $data;
-        if($data){
-            echo "data added";
-        }
+        // if($data){
+        //     echo "data added";
+        // }
     } 
-
  }
-
-// $submitdata = new Submit();
-
-// $submitdata->saveStudent('John','20','Maths');
-
-
-
-
-
 
 ?>

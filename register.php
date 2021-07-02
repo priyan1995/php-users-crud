@@ -1,12 +1,91 @@
 <?php
 require_once __DIR__ . "../header.php";
+require_once __DIR__ . "../classes/register.php";
+require_once __DIR__ . "../classes/connection.php";
 
-require_once __DIR__ . "../classes/session.php";
+$connection = new Connection();
 
-$sessionCheck = new SessionCheck();
-$sessionCheck->sessionIsst();
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['uname']) && isset($_POST['password']) && isset($_POST['password_re'])) {
 
+    $username = $_POST['uname'];
+    $password = $_POST['password'];
+    $password_re = $_POST['password_re'];
+
+
+    if($password == $password_re){
+        $register = new Register();
+        $register->registeruser($username,$password);
+    }
+
+
+}
 ?>
+
+
+
+
+
+<section class="insert-form-sec">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2>Register</h2>
+            </div>
+
+            <div class="col-12">
+                <form id="registerForm" action="" method="post" autocomplete="off">
+
+                    <div class="form-group">
+                        <label>User Name</label>
+                        <input type="text" class="form-control" name="uname">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" name="password">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Retype Password</label>
+                        <input type="password" class="form-control" name="password_re">
+                    </div>
+
+
+
+                    <br>
+                    <button href="register.php" name="submit" id="submitBtn" class="btn btn-primary">Register</button>
+                    <a href="login.php" class="btn btn-success">Login</a>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(function() {
+        $("#submitBtn").click(function(event) {
+            event.preventDefault();
+
+            var form = $("#registerForm");
+            var url = form.attr('action');
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                encode: true,
+                data: form.serialize(),
+                success: function(data) {
+                    // Swal.fire('Student Saved');
+                    //document.getElementById("studentAddForm").reset();
+                    window.location.href = 'login.php';                  
+                }
+            });
+        });
+    });
+</script>
 
 
 <?php require_once __DIR__ . '../footer.php'; ?>
