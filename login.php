@@ -4,8 +4,8 @@ require_once __DIR__ . "../classes/connection.php";
 require_once __DIR__ . "../classes/login.php";
 require_once __DIR__ . "../classes/session.php";
 
-$login = new Login();
-$login->loginAccess("test", "test");
+// $login = new Login();
+// $login->loginAccess("test", "test");
 
 
 
@@ -16,6 +16,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['uname']) && isset($_PO
 
     $username = $_POST['uname'];
     $password = $_POST['password'];
+
+    $login = new Login();
+    $login->loginAccess($username, $password);
+
+    if(isset($_SESSION['login_user'])){
+        header("location: index.php");
+    }
 }
 
 
@@ -32,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['uname']) && isset($_PO
 
             <div class="col-12">
 
-                <form id="studentAddForm" action="" method="post">
+                <form id="loginForm" action="" method="post">
 
                     <div class="form-group">
                         <label>User Name</label>
@@ -57,25 +64,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['uname']) && isset($_PO
 </section>
 
 <script>
-    // $(function() {
-    //     $("#submitBtn").click(function(event) {
-    //         event.preventDefault();
+    $(function() {
+        $("#submitBtn").click(function(event) {
+            event.preventDefault();
 
-    //         var form = $("#studentAddForm");
-    //         var url = form.attr('action');
+            var form = $("#loginForm");
+            var url = form.attr('action');
 
-    //         $.ajax({
-    //             type: 'POST',
-    //             url: url,
-    //             encode: true,
-    //             data: form.serialize(),
-    //             success: function() {
-    //                 Swal.fire('Student Saved');
-    //                 document.getElementById("studentAddForm").reset();
-    //             }
-    //         });
-    //     });
-    // });
+            $.ajax({
+                type: 'POST',
+                url: url,
+                encode: true,
+                data: form.serialize(),
+                success: function() {
+                    // Swal.fire('Student Saved');
+                     //document.getElementById("studentAddForm").reset();
+                     window.location.href = 'index.php';  
+                }
+            });
+        });
+    });
 </script>
 
 
