@@ -12,19 +12,18 @@ class Register
 
         if ($uname !== "" && $password !== "" && $email !== "") {
 
-            $available = "SELECT * FROM users WHERE username = '$uname' OR email = '$email'"; 
-            $resultavailab=mysqli_query($conn,$available);
+            $available = "SELECT * FROM users WHERE username = '$uname' OR email = '$email'";
+            $resultavailab = mysqli_query($conn, $available);
             $resultavailabCount =  mysqli_num_rows($resultavailab);
-            if($resultavailabCount){
+            if ($resultavailabCount) {
                 //header("location: /php-users-crud/register.php");
                 echo '<p class="text-danger text-center">Username or email already exist</p>';
-            }else{
+            } else {
                 $data = mysqli_query($conn, "insert into users values('','" . $uname . "','" . $email . "','" . $password . "')");
-                if($data){
+                if ($data) {
                     header("location: /php-users-crud/login.php");
                 }
             }
         }
     }
 }
-
