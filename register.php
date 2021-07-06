@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['uname']) && isset($_PO
 
 
                     <br>
-                    <button href="register.php" name="submit" id="submitBtn" class="btn btn-primary">Register</button>
+                    <button  name="submit" id="submitBtn" class="btn btn-primary">Register</button>
                     <a href="login.php" class="btn btn-success">Login</a>
 
 
@@ -98,8 +98,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['uname']) && isset($_PO
                             url: url,
                             encode: true,
                             data: form.serialize(),
-                            success: function(data) {
-                                // Swal.fire('User Saved');
+                            success: function() {
+                                 Swal.fire('User Saved');
                                 //document.getElementById("studentAddForm").reset();
                                 window.location.href = 'login.php';
                             }
