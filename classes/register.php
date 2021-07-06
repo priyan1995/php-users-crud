@@ -4,11 +4,12 @@ require_once __DIR__ . '../connection.php';
 
 class Register{
 
-    public function registeruser($uname, $password){
+    public function registeruser($uname, $password, $email){
         $dbConnect = new Connection();
         $conn = $dbConnect->connect();
 
-        $data = mysqli_query($conn, "insert into users values('','".$uname."','".$password."')");
+        if($uname !=="" && $password !=="" && $email !==""  )
+        $data = mysqli_query($conn, "insert into users values('','".$uname."','".$email."','".$password."')");
 
         if($data){
             echo "new user added";

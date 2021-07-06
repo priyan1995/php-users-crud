@@ -5,19 +5,18 @@ require_once __DIR__ . "../classes/connection.php";
 
 $connection = new Connection();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['uname']) && isset($_POST['password']) && isset($_POST['password_re'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['uname']) && isset($_POST['password']) && isset($_POST['password_re']) && isset($_POST['email'])) {
 
     $username = $_POST['uname'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
     $password_re = $_POST['password_re'];
 
 
-    if($password == $password_re){
+    if ($password == $password_re) {
         $register = new Register();
-        $register->registeruser($username,$password);
+        $register->registeruser($username, $password, $email);
     }
-
-
 }
 ?>
 
@@ -42,8 +41,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['uname']) && isset($_PO
                     </div>
 
                     <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" name="email">
+                    </div>
+
+                    <div class="form-group">
                         <label>Password</label>
-                        <input type="password" class="form-control" name="password">
+                        <input type="password" class="form-control" id="password" name="password">
                     </div>
 
                     <div class="form-group">
@@ -65,25 +69,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['uname']) && isset($_PO
 </section>
 
 <script>
-    $(function() {
-        $("#submitBtn").click(function(event) {
-            event.preventDefault();
+    $("#registerForm").validate({
+        rules: {
+            uname: {
+                required: true
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            password: {
+                required: true
+            },
+            password_re: {
+                required: true,
+                equalTo: '[name="password"]'
+            },
+            submitHandler: function() {
+                $(function() {
+                    $("#submitBtn").click(function(event) {
+                        event.preventDefault();
 
-            var form = $("#registerForm");
-            var url = form.attr('action');
+                        var form = $("#registerForm");
+                        var url = form.attr('action');
 
-            $.ajax({
-                type: 'POST',
-                url: url,
-                encode: true,
-                data: form.serialize(),
-                success: function(data) {
-                    // Swal.fire('Student Saved');
-                    //document.getElementById("studentAddForm").reset();
-                    window.location.href = 'login.php';                  
-                }
-            });
-        });
+                        $.ajax({
+                            type: 'POST',
+                            url: url,
+                            encode: true,
+                            data: form.serialize(),
+                            success: function(data) {
+                                // Swal.fire('User Saved');
+                                //document.getElementById("studentAddForm").reset();
+                                window.location.href = 'login.php';
+                            }
+                        });
+                    });
+                });
+
+
+            }
+        }
     });
 </script>
 

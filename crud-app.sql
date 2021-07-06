@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2021 at 06:46 PM
+-- Generation Time: Jul 06, 2021 at 08:56 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.13
 
@@ -39,10 +39,35 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `name`, `age`, `subject`) VALUES
-(46, 'Priyan Darshana', 25, 'rhtwerth'),
-(47, 'John', 20, 'Maths'),
-(48, 'Lorem', 30, 'IT'),
-(49, 'Ajith Perera', 23, 'Sinhala');
+(67, 'priyan', 26, 'maths'),
+(70, 'Asitha Sampath', 26, 'WAD');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
+(1, 'test', '', 'test'),
+(2, 'priyan', '', '123'),
+(3, 'admin', '', 'test'),
+(4, '', '', ''),
+(5, '', '', ''),
+(6, '', '', ''),
+(7, 'admin', 'priyan1995darshana@gmail.com', 'openme'),
+(9, 'admin', 'asdfasdf', 'openme');
 
 --
 -- Indexes for dumped tables
@@ -55,6 +80,12 @@ ALTER TABLE `students`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -62,7 +93,13 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

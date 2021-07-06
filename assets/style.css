@@ -2,3 +2,6 @@ section{
     padding: 5% 0;
 }
 
+#uname-error{
+    color: red;
+}
